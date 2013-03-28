@@ -258,6 +258,11 @@ input {
     .carousel-caption .btn {
       margin-top: 10px;
     }
+    .carousel-inner {
+      overflow: hiden;
+      width: 100%;
+      position: relative;
+    }
 
 
 
@@ -412,10 +417,11 @@ input {
 }
 .featurette p a {
   color:#0088cc;
-}
-.featurette p a.hover {
-  color:#000;
-  text-decoration: underline;
+
+  &:hover {
+    color:#000;
+    text-decoration: underline;
+  }
 }
 .row .span4 h2 {
    color:#000;
@@ -430,4 +436,8 @@ a.btn {
     color: #fff;
     background-color: #000;
   }
+}
+
+.container.marketing {
+  width: auto;
 }
