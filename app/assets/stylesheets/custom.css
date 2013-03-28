@@ -338,7 +338,7 @@ body {
 a.btn {
   color: #000; }
   a.btn:visited {
-    color: #fff; }
+    color: #ddd; }
   a.btn:hover {
     color: #fff;
     background-color: #000; }
