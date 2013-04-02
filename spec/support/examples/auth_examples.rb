@@ -10,16 +10,14 @@
 # end
 shared_examples_for :requires_auth do
 
-  context "user is not signed in" do
+  as_visitor do
     it "redirects" do
       act!
       verify_auth_redirect!
     end
   end
 
-  context "user is signed in" do
-    before { set_admin! }
-
+  as_admin do
     it "responds successfully if user is logged in" do
       act!
       expect(response).to be_success

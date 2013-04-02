@@ -33,7 +33,7 @@ describe AdminsController do
     let(:admin_attrs) { valid_admin_attrs }
     let(:act!) { post :create, admin: admin_attrs }
 
-    context "unauthenticated" do
+    as_visitor do
       it "redirects to sign_in" do
         act!
         verify_auth_redirect!
