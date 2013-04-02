@@ -1,9 +1,14 @@
 <h2>Admins</h2>
 
-<%= link_to "Create a new admin", new_admin_path %>
+<%= button_to "Create a new admin", new_admin_path, method: :get %>
 
 <ul>
   <% @admins.each do |admin| %>
-    <li><%= admin.email %></li>
+    <li>
+      <%= admin.email %>
+      <% if admin != current_admin %>
+        <%= button_to "Delete", destroy_admin_path(admin), method: :delete %>
+      <% end %>
+    </li>
   <% end %>
 </ul>
