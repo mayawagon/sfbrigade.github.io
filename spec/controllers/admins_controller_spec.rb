@@ -10,7 +10,7 @@ describe AdminsController do
     as_admin do
       it "sets @admins" do
         act!
-        assigns(:admins).should == [ @admin ]
+        assigns(:admins).should == [ admin ]
       end
     end
   end

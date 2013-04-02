@@ -11,7 +11,8 @@ module AuthHelpers
       # admin, and run the given examples.
       def as_admin &example_group_block
         context "as an admin" do
-          before { set_admin! }
+          let!(:admin) { Fabricate(:admin) }
+          before { sign_in :admin, admin }
 
           describe "authenticated", &example_group_block
         end
@@ -23,13 +24,6 @@ module AuthHelpers
       end
 
     end
-  end
-
-  # Create an admin session, and set the logged in
-  # @admin instance variable.
-  def set_admin!(admin = nil)
-    @admin ||= Fabricate(:admin)
-    sign_in(:admin, @admin)
   end
 
   # Assert that the response redirected to
