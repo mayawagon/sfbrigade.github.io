@@ -1,0 +1,10 @@
+%h2 Admins
+
+= button_to "New Admin", new_admin_path, method: :get
+
+%ul
+  - @admins.each do |admin|
+    %li
+      = admin.email
+      - if admin != current_admin
+        = button_to "Delete", destroy_admin_path(admin), method: :delete
