@@ -1,11 +1,24 @@
-class Admin < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+class Admin
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
+  devise :database_authenticatable,
+         :registerable,
+         :recoverable,
+         :rememberable,
+         :trackable,
+         :validatable
+
+  field :email,                  type: String
+  field :encrypted_password,     type: String
+  field :reset_password_token,   type: String
+  field :reset_password_sent_at, type: Time
+  field :remember_created_at,    type: Time
+  field :sign_in_count,          type: Integer
+  field :current_sign_in_at,     type: Time
+  field :last_sign_in_at,        type: Time
+  field :current_sign_in_ip,     type: String
+  field :last_sign_in_ip,        type: String
 
 end

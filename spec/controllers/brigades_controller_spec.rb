@@ -14,7 +14,7 @@ describe BrigadesController do
     as_authed_admin do
       it "fetches all brigades" do
         act!
-        assigns(:brigades).should == [ sf ]
+        assigns(:brigades).to_a.should == [ sf ]
       end
     end
   end
@@ -59,7 +59,7 @@ describe BrigadesController do
 
         it "redirects to the new brigade path" do
           act!
-          response.should redirect_to(brigade_path(Brigade.find_by_slug("ny")))
+          response.should redirect_to(brigade_path(Brigade.find_by(slug: "ny")))
         end
       end
     end
@@ -91,7 +91,7 @@ describe BrigadesController do
       end
 
       it "redirects to the brigade page" do
-        response.should redirect_to(brigade_path(Brigade.find_by_slug("sf")))
+        response.should redirect_to(brigade_path(Brigade.find_by(slug: "sf")))
       end
     end
   end
