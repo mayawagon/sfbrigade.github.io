@@ -5,7 +5,7 @@ describe HomeController do
   describe "#index" do
     it "does not require authentication" do
       get :index
-      response.status.should == 200
+      response.should be_success
     end
   end
 
