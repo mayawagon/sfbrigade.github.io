@@ -7,9 +7,7 @@ describe AdminsController do
 
     it_behaves_like :requires_auth
 
-    context "authenticated" do
-      before { set_admin! }
-
+    as_admin do
       it "sets @admins" do
         act!
         assigns(:admins).should == [ @admin ]
@@ -22,9 +20,7 @@ describe AdminsController do
 
     it_behaves_like :requires_auth
 
-    context "authenticated" do
-      before { set_admin! }
-
+    as_admin do
       it "sets a blank admin" do
         act!
         assigns(:admin).should be_a(Admin)
@@ -44,9 +40,7 @@ describe AdminsController do
       end
     end
 
-    context "authenticated" do
-      before { set_admin! }
-
+    as_admin do
       context "email is invalid" do
         let(:admin_attrs) { valid_admin_attrs.merge(email: nil) }
 
