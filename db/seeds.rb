@@ -6,8 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-admin = Admin.new
-admin.email = "default@codeforamerica.org"
-admin.password = "12345678"
-admin.password_confirmation = "12345678"
-admin.save
+unless Rails.env.test?
+  admin = Admin.new
+  admin.email = "default@codeforamerica.org"
+  admin.password = "12345678"
+  admin.password_confirmation = "12345678"
+  admin.save
+end

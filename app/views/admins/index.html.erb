@@ -1,0 +1,9 @@
+<h2>Admins</h2>
+
+<%= link_to "Create a new admin", new_admin_path %>
+
+<ul>
+  <% @admins.each do |admin| %>
+    <li><%= admin.email %></li>
+  <% end %>
+</ul>

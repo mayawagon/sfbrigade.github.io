@@ -6,6 +6,10 @@ describe "admin routing" do
     { get: "/admins/sign_up" }.should_not be_routable
   end
 
+  it "routes GET /admins to admins#index" do
+    { get: "/admins" }.should route_to(controller: "admins", action: "index")
+  end
+
   it "routes GET /admins/new to admins#new" do
     { get: "/admins/new" }.should route_to(controller: "admins", action: "new")
   end

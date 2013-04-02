@@ -7,8 +7,9 @@ BrigadeFramework::Application.routes.draw do
   resources :brigades
 
   # Admin routes.
+  get "/admins" => "admins#index"
   get "/admins/new" => "admins#new", as: :new_admin
-  post "/admins" => "admins#create", as: :admins
+  post "/admins" => "admins#create"
 
 
   # The priority is based upon order of creation:
