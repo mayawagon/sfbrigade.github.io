@@ -1,5 +1,5 @@
 BrigadeFramework::Application.routes.draw do
-  devise_for :admins
+  devise_for :admins, skip: [ :registrations ]
 
   root :to => "home#index"
 #  root :to => "home#gdata"
