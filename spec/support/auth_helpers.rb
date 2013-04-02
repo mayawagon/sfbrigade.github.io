@@ -9,10 +9,10 @@ module AuthHelpers
 
       # Create a new context block with an authenticated
       # admin, and run the given examples.
-      def as_admin &example_group_block
+      def as_authed_admin &example_group_block
         context "as an admin" do
-          let!(:admin) { Fabricate(:admin) }
-          before { sign_in :admin, admin }
+          let!(:authed_admin) { Fabricate(:admin) }
+          before { sign_in :admin, authed_admin }
 
           describe "authenticated", &example_group_block
         end
@@ -33,8 +33,4 @@ module AuthHelpers
     response.should redirect_to("/admins/sign_in")
   end
 
-end
-
-RSpec.configure do |config|
-  config.include AuthHelpers::ExampleGroupExtensions, :type => :controller
 end

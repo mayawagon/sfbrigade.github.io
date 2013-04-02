@@ -1,4 +1,8 @@
 BrigadeFramework::Application.routes.draw do
+
+  # Only admins can create other admins.
+  # Devise registrations are disabled, and admins
+  # will be created via the admins_controller.
   devise_for :admins, skip: [ :registrations ]
 
   root :to => "home#index"
@@ -6,10 +10,11 @@ BrigadeFramework::Application.routes.draw do
 
   resources :brigades
 
-  # Admin routes.
+  # Admin routes
   get "/admins" => "admins#index"
   get "/admins/new" => "admins#new", as: :new_admin
   post "/admins" => "admins#create"
+  delete "/admins/:id" => "admins#destroy", as: :destroy_admin
 
 
   # The priority is based upon order of creation:

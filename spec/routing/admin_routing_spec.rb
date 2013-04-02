@@ -18,4 +18,8 @@ describe "admin routing" do
     { post: "/admins" }.should route_to(controller: "admins", action: "create")
   end
 
+  it "routes DELETE /admins/:id to admins#destroy" do
+    { delete: "/admins/1" }.should route_to(controller: "admins", action: "destroy", id: "1")
+  end
+
 end

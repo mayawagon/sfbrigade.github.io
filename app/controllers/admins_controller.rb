@@ -27,4 +27,17 @@ class AdminsController < ApplicationController
     end
   end
 
+  def destroy
+    admin = Admin.find(params[:id])
+
+    if admin == current_admin
+      flash[:notice] = "You cannot delete yourself!"
+      redirect_to admins_path
+    else
+      admin.destroy
+      flash[:notice] = "#{admin.email} was deleted"
+      redirect_to admins_path
+    end
+  end
+
 end

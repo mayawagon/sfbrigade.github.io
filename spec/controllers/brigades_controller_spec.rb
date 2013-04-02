@@ -11,7 +11,7 @@ describe BrigadesController do
 
     it_behaves_like :requires_auth
 
-    as_admin do
+    as_authed_admin do
       it "fetches all brigades" do
         act!
         assigns(:brigades).should == [ sf ]
@@ -24,7 +24,7 @@ describe BrigadesController do
 
     it_behaves_like :requires_auth
 
-    as_admin do
+    as_authed_admin do
       it "sets an empty Brigade" do
         get :new
         response.should be_success
@@ -36,14 +36,9 @@ describe BrigadesController do
   describe "#create" do
     let(:act!) { post :create, brigade: ny_attrs }
 
-    as_visitor do
-      it "redirects to sign_in" do
-        act!
-        verify_auth_redirect!
-      end
-    end
+    it_behaves_like :redirects_visitors
 
-    as_admin do
+    as_authed_admin do
       context "brigade is invalid" do
         let(:act!) { post :create, brigade: ny_attrs.merge(name: nil) }
 
@@ -75,7 +70,7 @@ describe BrigadesController do
 
     it_behaves_like :requires_auth
 
-    as_admin do
+    as_authed_admin do
       it "sets the expected brigade" do
         act!
         assigns(:brigade).should == sf
@@ -86,14 +81,9 @@ describe BrigadesController do
   describe "#update" do
     let(:act!) { put :update, id: sf.id, brigade: sf_attrs.merge(name: "SF") }
 
-    as_visitor do
-      it "redirects to sign_in" do
-        act!
-        verify_auth_redirect!
-      end
-    end
+    it_behaves_like :redirects_visitors
 
-    as_admin do
+    as_authed_admin do
       before { act! }
 
       it "updates the brigade" do
@@ -109,14 +99,9 @@ describe BrigadesController do
   describe "#destroy" do
     let(:act!) { delete :destroy, id: sf.id }
 
-    as_visitor do
-      it "redirects to sign_in" do
-        act!
-        verify_auth_redirect!
-      end
-    end
+    it_behaves_like :redirects_visitors
 
-    as_admin do
+    as_authed_admin do
       it "destroys the brigade" do
         expect_difference Brigade, :count, -1 do
           act!
