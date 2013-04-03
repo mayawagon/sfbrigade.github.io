@@ -6,8 +6,8 @@ BrigadeFramework::Application.routes.draw do
   # Devise registrations are disabled, and admins
   # will be created via the admins_controller.
   devise_for :admins, skip: [ :registrations ], controllers: {
-    sessions: "admins/sessions",
-    passwords: "admins/passwords"
+    sessions: "admin/sessions",
+    passwords: "admin/passwords"
   }
 
   # Admin routes
