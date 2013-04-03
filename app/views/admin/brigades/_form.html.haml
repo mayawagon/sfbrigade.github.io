@@ -1,4 +1,4 @@
-= form_for(@brigade, html: { class: "form-horizontal" }) do |f|
+= form_for(@brigade, url: (@brigade.persisted? ? admin_brigade_path(@brigade) : admin_brigades_path), html: { class: "form-horizontal" }) do |f|
   = devise_errors_for(@brigade)
 
   %fieldset
@@ -19,4 +19,4 @@
 
     .form-actions.clearfix
       = f.button type: "submit", class: "btn btn-large btn-primary"
-      = link_to "Cancel", brigades_path, class: "btn btn-large"
+      = link_to "Cancel", admin_brigades_path, class: "btn btn-large"

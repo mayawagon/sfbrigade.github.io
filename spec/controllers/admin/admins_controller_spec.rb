@@ -63,7 +63,7 @@ describe Admin::AdminsController do
 
         it "redirects to admin index" do
           act!
-          response.should redirect_to(admins_path)
+          response.should redirect_to(admin_admins_path)
         end
       end
     end
@@ -84,7 +84,7 @@ describe Admin::AdminsController do
 
       it "redirects to admins index" do
         act!
-        response.should redirect_to(admins_path)
+        response.should redirect_to(admin_admins_path)
       end
 
       it "sets a flash message" do

@@ -1,10 +1,17 @@
 require 'spec_helper'
 
-describe BrigadesController do
+describe Admin::BrigadesController do
 
   let!(:sf) { Fabricate(:sf_brigade) }
   let(:sf_attrs) { Fabricate.attributes_for(:sf_brigade) }
   let(:ny_attrs) { Fabricate.attributes_for(:ny_brigade) }
+
+  shared_examples_for :redirects_to_index do
+    it "redirects to the brigade index" do
+      act!
+      response.should redirect_to(admin_brigades_path)
+    end
+  end
 
   describe "#index" do
     let(:act!) { get :index }
@@ -57,10 +64,7 @@ describe BrigadesController do
           expect_difference(Brigade, :count) { act! }
         end
 
-        it "redirects to the new brigade path" do
-          act!
-          response.should redirect_to(brigade_path(Brigade.find_by(slug: "ny")))
-        end
+        it_behaves_like :redirects_to_index
       end
     end
   end
@@ -90,9 +94,7 @@ describe BrigadesController do
         sf.reload.name.should == "SF"
       end
 
-      it "redirects to the brigade page" do
-        response.should redirect_to(brigade_path(Brigade.find_by(slug: "sf")))
-      end
+      it_behaves_like :redirects_to_index
     end
   end
 
@@ -108,24 +110,7 @@ describe BrigadesController do
         end
       end
 
-      it "redirects to brigades_path" do
-        act!
-        response.should redirect_to(brigades_path)
-      end
-    end
-  end
-
-  describe "#show" do
-    let(:act!) { get :show, id: sf.id }
-
-    it "does not require authentication" do
-      act!
-      response.should be_success
-    end
-
-    it "assigns the expected brigade" do
-      act!
-      assigns(:brigade).should == sf
+      it_behaves_like :redirects_to_index
     end
   end
 

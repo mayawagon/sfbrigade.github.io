@@ -30,7 +30,7 @@ module AuthHelpers
   # the admin sign_in path.
   def verify_auth_redirect!
     response.should be_redirect
-    response.should redirect_to("/admins/sign_in")
+    response.should redirect_to(new_admin_session_path)
   end
 
 end

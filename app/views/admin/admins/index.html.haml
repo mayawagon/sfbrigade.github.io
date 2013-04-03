@@ -1,5 +1,5 @@
 
-= form_for(@admin, :as => :admin, :url => admins_path, html: { class: "form-inline" }) do |f|
+= form_for(@admin, :as => :admin, :url => admin_admins_path, html: { class: "form-inline" }) do |f|
 
   = devise_errors_for(@admin)
 
@@ -30,4 +30,4 @@
       %td= admin.email
       %td
         - if admin != current_admin
-          = link_to "Delete", destroy_admin_path(admin), method: :delete, data: { confirm: 'Are you sure?' }
+          = link_to "Delete", admin_destroy_admin_path(admin), method: :delete, data: { confirm: 'Are you sure?' }

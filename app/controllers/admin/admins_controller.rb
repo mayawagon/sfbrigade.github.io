@@ -22,7 +22,7 @@ class Admin::AdminsController < ApplicationController
 
     if @admin.save
       flash[:notice] = "Created admin: #{@admin.email}"
-      redirect_to admins_path
+      redirect_to admin_admins_path
     else
       flash.now[:alert] = "There was an error with the admin."
       render_index
@@ -39,7 +39,7 @@ class Admin::AdminsController < ApplicationController
       flash[:notice] = "#{admin.email} was deleted"
     end
 
-    redirect_to admins_path
+    redirect_to admin_admins_path
   end
 
   private
