@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe "admin routing" do
 
+  it "routes GET /admin to admins#home" do
+    { get: "/admin" }.should route_to(controller: "admins", action: "home")
+  end
+
   it "disables registrations" do
     { get: "/admins/sign_up" }.should_not be_routable
   end

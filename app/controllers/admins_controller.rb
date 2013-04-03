@@ -4,6 +4,9 @@ class AdminsController < ApplicationController
 
   before_filter :authenticate_admin!
 
+  def home
+  end
+
   def index
     render_index
   end
