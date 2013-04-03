@@ -26,4 +26,7 @@ BrigadeFramework::Application.routes.draw do
     resources :brigades
   end
 
+  # Catch-all for the show brigade page.
+  get "/:brigade_slug" => "brigade_home#brigade_home", as: :brigade_home
+
 end
