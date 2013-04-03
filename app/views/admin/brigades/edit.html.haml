@@ -1,5 +1,67 @@
-- content_for(:legend) do
+%h1
   Edit Brigade &raquo;
   = @brigade.name
 
-= render partial: "admin/brigades/form"
+= form_for(@brigade, url: admin_brigade_path(@brigade), html: { class: "form-horizontal" }) do |f|
+  = devise_errors_for(@brigade)
+
+  %fieldset
+    %legend Basics
+
+    .control-group
+      = f.label :name, placeholder: "Name", class: "control-label"
+      .controls
+        = f.text_field :name, placeholder: "Name", class: "input-block-level"
+
+    .control-group
+      = f.label :slug, class: "control-label"
+      .controls
+        = f.text_field :slug, placeholder: "slug", class: "input-block-level"
+        %span.help-block
+          Used for the brigade's permalink, i.e.
+          = link_to raw("brigades.codeforamerica.org/<strong>san-francisco</strong>"), "/san-francisco"
+
+  %fieldset
+    %legend Links
+
+    .control-group
+      = f.label :meetup_url, placeholder: "Meetup Url", class: "control-label"
+      .controls
+        = f.text_field :meetup_url, placeholder: "Meetup Url", class: "input-block-level"
+
+    .control-group
+      = f.label :github_url, placeholder: "Github Url", class: "control-label"
+      .controls
+        = f.text_field :github_url, placeholder: "Github Url", class: "input-block-level"
+
+    .control-group
+      = f.label :twitter_screen_name, placeholder: "Twitter Screen Name", class: "control-label"
+      .controls
+        = f.text_field :twitter_screen_name, placeholder: "Twitter Screen Name", class: "input-block-level"
+
+    .control-group
+      = f.label :twitter_hashtag, placeholder: "Twitter Hashtag", class: "control-label"
+      .controls
+        = f.text_field :twitter_hashtag, placeholder: "Twitter Hashtag", class: "input-block-level"
+
+  %fieldset
+    %legend Simple Theme
+
+    .control-group
+      = f.label :simple_banner_img_url, placeholder: "Banner Image Url", class: "control-label"
+      .controls
+        = f.text_field :simple_banner_img_url, placeholder: "Banner Image Url", class: "input-block-level"
+
+    .control-group
+      = f.label :simple_banner_header, placeholder: "Banner Header", class: "control-label"
+      .controls
+        = f.text_field :simple_banner_header, placeholder: "Banner Header", class: "input-block-level"
+
+    .control-group
+      = f.label :simple_banner_text, placeholder: "Banner Text", class: "control-label"
+      .controls
+        = f.text_area :simple_banner_text, placeholder: "Banner Text", class: "input-block-level", rows: 5
+
+    .form-actions.clearfix
+      = f.button type: "submit", class: "btn btn-large btn-primary"
+      = link_to "Cancel", admin_brigades_path, class: "btn btn-large"

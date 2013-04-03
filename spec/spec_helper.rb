@@ -9,6 +9,7 @@ require 'rspec/autorun'
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 RSpec.configure do |config|
+  config.include Mongoid::Matchers
   config.include AuthHelpers, :type => :controller
   config.include AuthHelpers::ExampleGroupExtensions, :type => :controller
   config.include ExpectHelpers

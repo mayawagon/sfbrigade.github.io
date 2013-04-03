@@ -1,3 +1,23 @@
 
-- content_for(:legend) { "New Brigade" }
-= render partial: "admin/brigades/form"
+= form_for(@brigade, url: admin_brigades_path, html: { class: "form-horizontal" }) do |f|
+  = devise_errors_for(@brigade)
+
+  %fieldset
+    %legend New Brigade
+
+    .control-group
+      = f.label :name, placeholder: "Name", class: "control-label"
+      .controls
+        = f.text_field :name, placeholder: "Name", class: "input-block-level"
+
+    .control-group
+      = f.label :slug, class: "control-label"
+      .controls
+        = f.text_field :slug, placeholder: "slug", class: "input-block-level"
+        %span.help-block
+          Used for the brigade's permalink, i.e.
+          = link_to raw("brigades.codeforamerica.org/<strong>san-francisco</strong>"), "/san-francisco"
+
+    .form-actions.clearfix
+      = f.button type: "submit", class: "btn btn-large btn-primary"
+      = link_to "Cancel", admin_brigades_path, class: "btn btn-large"

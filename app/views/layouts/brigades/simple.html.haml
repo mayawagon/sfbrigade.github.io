@@ -12,7 +12,7 @@
           /   %span.icon-bar
           /   %span.icon-bar
           /   %span.icon-bar
-          = link_to yield(:nav_brand_text), yield(:nav_brand_path), class: "brand"
+          = link_to @brigade.name, brigade_home_path(@brigade.slug), class: "brand"
           .nav-collapse.collapse
             %ul.nav
               %li.active= link_to "Home", "#"
@@ -23,3 +23,14 @@
               %ul.nav.pull-right
                 %li.pull= link_to "Admin", admin_home_path
 
+
+  .carousel.slide
+    .carousel-inner
+      .item.active
+        = image_tag(@brigade.simple_banner_img_url)
+        .container
+          .carousel-caption
+            %h1= @brigade.simple_banner_header
+            %p.lead= @brigade.simple_banner_text
+            - unless @brigade.meetup_url.empty?
+              = link_to "Stop By Our Meetups", @brigade.meetup_url, target: "_blank", class: "btn btn-large btn-primary"
