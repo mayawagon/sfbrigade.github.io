@@ -17,6 +17,9 @@
             <div class="nav-collapse collapse">
               <ul class="nav">
                 <li class="active"><a href="#">Home</a></li>
+                <% if admin_signed_in? %>
+                  <li><a href="<%= admin_home_path %>">Admin</a></li>
+                <% end %>
                 <li><a href="#meetup">Events</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
@@ -88,7 +91,7 @@
               <p class="lead">
                 Come join developers, designers, data geeks, leaders, and idea-makers who volunteer to help our government and civic orgs adopt open web technologies.
               </p>
-              <a class="btn btn-large btn-primary" style="color:#ffffff" 
+              <a class="btn btn-large btn-primary" style="color:#ffffff"
                 href="http://www.meetup.com/Code-for-San-Francisco-Civic-Hack-Night/">Stop By Our Meetups</a>
                 &nbsp;&nbsp;&nbsp;
               <a class="btn btn-large btn-primary"

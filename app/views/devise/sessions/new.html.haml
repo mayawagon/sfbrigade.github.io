@@ -1,14 +1,5 @@
-/ <form class="form-signin">
-/   <h2 class="form-signin-heading">Please sign in</h2>
-/   <input type="text" class="input-block-level" placeholder="Email address">
-/   <input type="password" class="input-block-level" placeholder="Password">
-/   <label class="checkbox">
-/     <input type="checkbox" value="remember-me"> Remember me
-/   </label>
-/   <button class="btn btn-large btn-primary" type="submit">Sign in</button>
-/  </form>
-
 = form_for(resource, :as => resource_name, :url => session_path(resource_name), html: { class: "form-signin" }) do |f|
+
   %h2.form-signin-heading Admin Login
 
   = f.email_field :email, placeholder: "Email", :autofocus => true, class: "input-block-level"
@@ -20,4 +11,4 @@
 
   .clearfix
     = f.button "Sign in", type: "submit", class: "btn btn-large btn-primary pull-left"
-    = link_to "Forgot your password?", new_password_path(resource_name), class: "forgot-password pull-left"
+    = link_to "Forgot your password?", new_password_path(resource_name), class: "signin-secondary-link pull-left"
