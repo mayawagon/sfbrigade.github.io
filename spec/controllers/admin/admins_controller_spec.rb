@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe AdminsController do
+describe Admin::AdminsController do
 
   shared_examples_for :renders_index do
     it "sets @admins" do

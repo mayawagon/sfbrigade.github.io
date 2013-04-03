@@ -1,4 +1,4 @@
-class AdminsController < ApplicationController
+class Admin::AdminsController < ApplicationController
 
   layout "admin"
 

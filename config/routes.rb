@@ -11,11 +11,11 @@ BrigadeFramework::Application.routes.draw do
   }
 
   # Admin routes
-  get "/admin" => "admins#home", as: :admin_home
-  get "/admins" => "admins#index"
-  get "/admins/new" => "admins#new", as: :new_admin
-  post "/admins" => "admins#create"
-  delete "/admins/:id" => "admins#destroy", as: :destroy_admin
+  get "/admin" => "admin/admins#home", as: :admin_home
+  get "/admins" => "admin/admins#index"
+  get "/admins/new" => "admin/admins#new", as: :new_admin
+  post "/admins" => "admin/admins#create"
+  delete "/admins/:id" => "admin/admins#destroy", as: :destroy_admin
 
   resources :brigades
 
