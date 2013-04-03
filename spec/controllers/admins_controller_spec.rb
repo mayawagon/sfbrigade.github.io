@@ -2,6 +2,16 @@ require 'spec_helper'
 
 describe AdminsController do
 
+  shared_examples_for :renders_index do
+    it "sets @admins" do
+      assigns(:admins).should == [ authed_admin ]
+    end
+
+    it "sets an @admin for the admin form" do
+      assigns(:admin).should be_a(Admin)
+    end
+  end
+
   describe "#index" do
     let(:act!) { get :index }
 
@@ -10,13 +20,7 @@ describe AdminsController do
     as_authed_admin do
       before { act! }
 
-      it "sets @admins" do
-        assigns(:admins).should == [ authed_admin ]
-      end
-
-      it "sets a blank @new_admin for the admin form" do
-        assigns(:admin).should be_a(Admin)
-      end
+      it_behaves_like :renders_index
     end
   end
 
@@ -31,13 +35,7 @@ describe AdminsController do
       shared_examples_for :failed_admin_create do
         before { act! }
 
-        it "sets @admins" do
-          assigns(:admins).should == [ authed_admin ]
-        end
-
-        it "render the index" do
-          response.should render_template(:index)
-        end
+        it_behaves_like :renders_index
 
         it "sets a flash message" do
           flash.now[:alert].should_not be_empty

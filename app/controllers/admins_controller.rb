@@ -5,8 +5,7 @@ class AdminsController < ApplicationController
   before_filter :authenticate_admin!
 
   def index
-    @admin = Admin.new
-    @admins = Admin.all
+    render_index
   end
 
   def create
@@ -23,8 +22,7 @@ class AdminsController < ApplicationController
       redirect_to admins_path
     else
       flash.now[:alert] = "There was an error with the admin."
-      @admins = Admin.all # set the admins so the index can render correctly
-      render :index
+      render_index
     end
   end
 
@@ -43,6 +41,14 @@ class AdminsController < ApplicationController
 
   def resource
     @admin
+  end
+
+  private
+
+  def render_index
+    @admin ||= Admin.new
+    @admins = Admin.all
+    render :index
   end
 
 end
