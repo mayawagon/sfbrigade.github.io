@@ -1,10 +1,27 @@
-%h2 Admins
 
-= button_to "New Admin", new_admin_path, method: :get
+= form_for(@admin, :as => :admin, :url => admins_path, html: { class: "form-inline" }) do |f|
 
-%ul
+  = devise_errors_for(@admin)
+
+  %fieldset
+    %legend New Admin
+
+    = f.email_field :email, class: "input", placeholder: "Email"
+    = f.password_field :password, class: "input-medium", placeholder: "Password"
+    = f.password_field :password_confirmation, class: "input-medium", placeholder: "Confirm Password"
+    = f.button "Create Admin", type: "submit", class: "btn"
+
+
+%h2
+  Admins
+
+%table.table.table-striped.table-bordered
+  %tr
+    %th Email
+    %th
   - @admins.each do |admin|
-    %li
-      = admin.email
-      - if admin != current_admin
-        = button_to "Delete", destroy_admin_path(admin), method: :delete
+    %tr
+      %td= admin.email
+      %td
+        - if admin != current_admin
+          = link_to "Delete", destroy_admin_path(admin), method: :delete, data: { confirm: 'Are you sure?' }

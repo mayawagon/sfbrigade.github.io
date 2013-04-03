@@ -8,21 +8,13 @@ describe AdminsController do
     it_behaves_like :requires_auth
 
     as_authed_admin do
+      before { act! }
+
       it "sets @admins" do
-        act!
         assigns(:admins).should == [ authed_admin ]
       end
-    end
-  end
 
-  describe "#new" do
-    let(:act!) { get :new }
-
-    it_behaves_like :requires_auth
-
-    as_authed_admin do
-      it "sets a blank admin" do
-        act!
+      it "sets a blank @new_admin for the admin form" do
         assigns(:admin).should be_a(Admin)
       end
     end
@@ -36,22 +28,32 @@ describe AdminsController do
     it_behaves_like :redirects_visitors
 
     as_authed_admin do
+      shared_examples_for :failed_admin_create do
+        before { act! }
+
+        it "sets @admins" do
+          assigns(:admins).should == [ authed_admin ]
+        end
+
+        it "render the index" do
+          response.should render_template(:index)
+        end
+
+        it "sets a flash message" do
+          flash.now[:alert].should_not be_empty
+        end
+      end
+
       context "email is invalid" do
         let(:admin_attrs) { valid_admin_attrs.merge(email: nil) }
 
-        it "renders new" do
-          act!
-          response.should render_template(:new)
-        end
+        it_behaves_like :failed_admin_create
       end
 
       context "passwords do not match" do
         let(:admin_attrs) { valid_admin_attrs.merge(password_confirmation: "falafel") }
 
-        it "renders new" do
-          act!
-          response.should render_template(:new)
-        end
+        it_behaves_like :failed_admin_create
       end
 
       context "admin is valid" do

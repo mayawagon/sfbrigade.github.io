@@ -1,5 +1,7 @@
 class BrigadesController < ApplicationController
 
+  layout "admin", except: [ :show ]
+
   before_filter :authenticate_admin!, :except => [ :show ]
 
   # GET /brigades

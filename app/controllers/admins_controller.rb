@@ -1,13 +1,12 @@
 class AdminsController < ApplicationController
 
+  layout "admin"
+
   before_filter :authenticate_admin!
 
   def index
-    @admins = Admin.all
-  end
-
-  def new
     @admin = Admin.new
+    @admins = Admin.all
   end
 
   def create
@@ -23,7 +22,9 @@ class AdminsController < ApplicationController
       flash[:notice] = "Created admin: #{@admin.email}"
       redirect_to admins_path
     else
-      render :new
+      flash.now[:alert] = "There was an error with the admin."
+      @admins = Admin.all # set the admins so the index can render correctly
+      render :index
     end
   end
 
@@ -38,6 +39,10 @@ class AdminsController < ApplicationController
       flash[:notice] = "#{admin.email} was deleted"
       redirect_to admins_path
     end
+  end
+
+  def resource
+    @admin
   end
 
 end
