@@ -6,11 +6,17 @@
   %fieldset
     %legend New Admin
 
+    %p
+      %small
+        Create an admin account with a temporary password, and ask the new admin to
+        set their own password using the "Forgot your password?" flow on the
+        = link_to "/admin", new_admin_session_path
+        login page.
+
     = f.email_field :email, class: "input", placeholder: "Email"
     = f.password_field :password, class: "input-medium", placeholder: "Password"
     = f.password_field :password_confirmation, class: "input-medium", placeholder: "Confirm Password"
     = f.button "Create Admin", type: "submit", class: "btn"
-
 
 %h2
   Admins
