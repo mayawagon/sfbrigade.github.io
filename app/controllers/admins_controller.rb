@@ -31,16 +31,12 @@ class AdminsController < ApplicationController
 
     if admin == current_admin
       flash[:notice] = "You cannot delete yourself!"
-      redirect_to admins_path
     else
       admin.destroy
       flash[:notice] = "#{admin.email} was deleted"
-      redirect_to admins_path
     end
-  end
 
-  def resource
-    @admin
+    redirect_to admins_path
   end
 
   private
