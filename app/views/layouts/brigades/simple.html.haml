@@ -1,0 +1,25 @@
+- content_for(:head) do
+  = stylesheet_link_tag "themes/brigades/simple", :media => "all"
+
+= render_head
+
+%body
+  .navbar-wrapper
+    .container
+      .navbar.navbar-inverse
+        .navbar-inner
+          / %a.bt.btn-navbar{ "data-toggle" => "collapse", "data-target" => ".nav-collapse" }
+          /   %span.icon-bar
+          /   %span.icon-bar
+          /   %span.icon-bar
+          = link_to yield(:nav_brand_text), yield(:nav_brand_path), class: "brand"
+          .nav-collapse.collapse
+            %ul.nav
+              %li.active= link_to "Home", "#"
+              %li= link_to "Events", "#meetup"
+              %li= link_to "Contact", "#contact"
+
+            - if admin_signed_in?
+              %ul.nav.pull-right
+                %li.pull= link_to "Admin", admin_home_path
+

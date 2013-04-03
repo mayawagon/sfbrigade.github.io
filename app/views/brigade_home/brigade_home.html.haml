@@ -1,2 +1,2 @@
-- content_for(:nav_brand_text) { "Code for America » " + @brigade.name }
+- content_for(:nav_brand_text) { @brigade.name }
 - content_for(:nav_brand_path) { brigade_home_path(@brigade.slug) }
