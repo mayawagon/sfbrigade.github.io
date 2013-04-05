@@ -15,6 +15,6 @@
     %tr
       %td= brigade.name
       %td= brigade.slug
-      %td= link_to "Show", brigade_home_path(brigade.slug)
+      %td= link_to "Show", brigade_home_path(brigade)
       %td= link_to "Edit", edit_admin_brigade_path(brigade)
       %td= link_to "Destroy", admin_brigade_path(brigade), method: :delete, data: { confirm: 'Are you sure?' }
