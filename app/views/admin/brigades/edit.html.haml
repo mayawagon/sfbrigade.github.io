@@ -24,25 +24,20 @@
   %fieldset
     %legend Links
 
-    .control-group
-      = f.label :meetup_url, placeholder: "Meetup Url", class: "control-label"
-      .controls
-        = f.text_field :meetup_url, placeholder: "Meetup Url", class: "input-block-level"
+    - links = []
+    - links << [ :meetup_url, "Meetup Url" ]
+    - links << [ :github_url, "Github Url" ]
+    - links << [ :google_group_url, "Google Group Url" ]
+    - links << [ :irc_hashtag, "IRC Hashtag" ]
+    - links << [ :irc_url, "IRC Url" ]
+    - links << [ :twitter_screen_name, "Twitter Screen Name" ]
+    - links << [ :twitter_hashtag, "Twitter Hashtag" ]
 
-    .control-group
-      = f.label :github_url, placeholder: "Github Url", class: "control-label"
-      .controls
-        = f.text_field :github_url, placeholder: "Github Url", class: "input-block-level"
-
-    .control-group
-      = f.label :twitter_screen_name, placeholder: "Twitter Screen Name", class: "control-label"
-      .controls
-        = f.text_field :twitter_screen_name, placeholder: "Twitter Screen Name", class: "input-block-level"
-
-    .control-group
-      = f.label :twitter_hashtag, placeholder: "Twitter Hashtag", class: "control-label"
-      .controls
-        = f.text_field :twitter_hashtag, placeholder: "Twitter Hashtag", class: "input-block-level"
+    - links.each do |link|
+      .control-group
+        = f.label link.first, placeholder: link.second, class: "control-label"
+        .controls
+          = f.text_field link.first, placeholder: link.second, class: "input-block-level"
 
   %fieldset
     %legend Simple Theme
@@ -61,6 +56,16 @@
       = f.label :simple_banner_text, placeholder: "Banner Text", class: "control-label"
       .controls
         = f.text_area :simple_banner_text, placeholder: "Banner Text", class: "input-block-level", rows: 5
+
+    .control-group
+      = f.label :simple_project_list, placeholder: "Project List", class: "control-label"
+      .controls
+        = f.text_area :simple_project_list, placeholder: "Project List (separate with newlines, HTML OK)", class: "input-block-level", rows: 5
+
+    .control-group
+      = f.label :simple_contact_text, placeholder: "Contact Us Text", class: "control-label"
+      .controls
+        = f.text_area :simple_contact_text, placeholder: "Contact Us Text (HTML OK)", class: "input-block-level", rows: 5
 
     .form-actions.clearfix
       = f.button type: "submit", class: "btn btn-large btn-primary"

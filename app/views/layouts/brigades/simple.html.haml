@@ -34,3 +34,125 @@
             %p.lead= @brigade.simple_banner_text
             - unless @brigade.meetup_url.empty?
               = link_to "Stop By Our Meetups", @brigade.meetup_url, target: "_blank", class: "btn btn-large btn-primary"
+
+  .container.marketing
+    .row
+      .span4
+        = image_tag("captain.png")
+        %h2 Come To Our Meetups
+        %p
+          A casual
+          = succeed "," do
+            = link_to "meetup", @brigade.meetup_url, target: "_blank"
+          usually bi-weekly, that explores different civic technology topics.
+        %p= link_to raw("View details &raquo;"), "#meetup", class: "btn"
+
+      .span4
+        = image_tag("community.png")
+        %h2 Join Online Discussions
+        %p
+          = link_to "An open conversation online ", @brigade.google_group_url, target: "_blank"
+          about what we're doing now and what's next.
+          - unless @brigade.irc_url.empty? or @brigade.irc_hashtag.empty?
+            We're also on freenode IRC at
+            = succeed "." do
+              = link_to @brigade.irc_hashtag, @brigade.irc_url, target: "_blank"
+        %p= link_to raw("View details &raquo;"), "#groups", class: "btn"
+
+      .span4
+        = image_tag("cfa_logo_greyscale.png")
+        %h2 See Our Inspiration
+        %p
+          = link_to "Code for America", "http://codeforamerica.org", target: "_blank"
+          is the organization that helped inspire many of us that we can change our City and Region.
+        %p= link_to raw("View details &raquo;"), "#cfa", class: "btn"
+
+    - unless @brigade.simple_projects.empty?
+
+      %hr.featurette-divider
+
+      .featurette
+        = image_tag("noun_project_756_citizen.png", class: "featurette-image pull-left")
+        %h2.featurette-heading
+          Works In Progress.
+          %span.muted 2013 Projects.
+
+        %p.lead
+          %ul.lead
+            - @brigade.simple_projects.each do |project|
+              %li= raw(project)
+
+    %hr.featurette-divider
+
+    .featurette
+      = link_to image_tag("cfa_brigade_logo.png", name: "cfa", id: "cfa", class: "featurette-image pull-right"), "http://brigade.codeforamerica.org", target: "_blank"
+
+      %h2.featurette-heading
+        Want To Help Your City?
+        %span.muted Good, we could use your help.
+
+      %p.lead
+        We are a
+        = succeed "," do
+          = link_to "Code for America Brigade", "http://brigade.codeforamerica.org", target: "_blank"
+        which means we're volunteers that contribute our talents toward improving the way our local
+        governments and community organizations use the web. Brigade is about action and you're here because you
+        are someone who takes action.
+        = succeed "," do
+          = link_to "See what kind of things brigades do", "http://brigade.codeforamerica.org/pages/activities", target: "_blank"
+        or watch the
+        = link_to "inspirational TED talk given by Jennifer Pahlka, the founder of Code for America", "http://codeforamerica.org/2012/03/08/jennifer-pahlka-at-ted-video/", target: "_blank"
+
+    %hr.featurette-divider
+
+    .featurette
+      = link_to image_tag("meetup.jpg", name: "meetup", id: "meetup", class: "featurette-image pull-left"), @brigade.meetup_url, target: "_blank"
+
+      %h2.featurette-heading
+        We Meet Often.
+        %span.muted Come Join Us.
+
+      %p.lead
+        View our
+        = link_to "Meetups site", @brigade.meetup_url, target: "_blank"
+        for our next location and time. It's actually a lot of fun, with great people and usually food/drink.
+
+    %hr.featurette-divider
+
+    .featurette
+      = link_to image_tag("google_groups.png", name: "groups", id: "groups", class: "featurette-image pull-right"), @brigade.google_group_url, target: "_blank"
+
+      %h2.featurette-heading
+        We Discuss Things Online.
+        %span.muted Join and Introduce Yourself.
+
+      %p.lead
+        Can't make it to a meetup?  No problem. We collaborate on projects, ask for help, and post wins to our
+        = link_to @brigade.name + " forum", @brigade.google_group_url, target: "_blank"
+        where you can get new posts in email and reply. We welcome anyone to sign-up... you might just see something you're interested in helping with.
+        - unless @brigade.irc_url.empty?
+          We're also in IRC chat on freenode.net channel
+          = succeed "." do
+            = link_to @brigade.irc_hashtag, @brigade.irc_url, target: "_blank"
+
+    %hr.featurette-divider
+
+    .featurette
+      %img{ name: "groups", id: "groups", class: "featurette-image pull-right" }
+      %h2.featurette-heading
+        Want Even More Info?.
+        %span.muted Contact Us.
+
+      %p.lead= raw @brigade.simple_contact_text
+
+    %hr.featurette-divider
+
+    %p.pull-right= link_to "Back to top", "#"
+    %p
+      Site Design Based on
+      = succeed "." do
+        = link_to "Bootstrap", "http://twitter.github.com/bootstrap", target: "_blank"
+
+      Some Images Provided by
+      = succeed "." do
+        = link_to "The Noun Project", "http://thenounproject.com", target: "_blank"
