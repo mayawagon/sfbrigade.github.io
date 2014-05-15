@@ -44,7 +44,7 @@ c::set('url', '/');
  
 */
 
-c::set('url', false);
+c::set('url', 'http://localhost:8888/codeforsanfrancisco.org');
 
 
 /* 
@@ -71,7 +71,7 @@ RewriteBase /subfolder
  
 */
 
-c::set('subfolder', false);
+c::set('subfolder', 'codeforsanfrancisco.org');
 
 
 /* 
